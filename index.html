@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf4ff">
+  <title>Weatherly — Your daily forecast</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="weather-app">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Weatherly home">
+        <span class="brand-icon" aria-hidden="true">☀</span>
+        <span>weatherly</span>
+      </a>
+      <p class="updated">A little sunshine for your day</p>
+    </header>
+
+    <section class="current-weather" aria-labelledby="city-name">
+      <div class="current-copy">
+        <p class="eyebrow">YOUR LOCAL FORECAST</p>
+        <h1 id="city-name">San Francisco</h1>
+        <p class="date">Tuesday, November 18</p>
+        <p class="condition">Mostly sunny</p>
+        <p class="temperature">21<span>°</span></p>
+        <p class="feels-like">Feels like 20° <span class="temperature-divider">·</span> H: 23° L: 15°</p>
+      </div>
+      <div class="sun-art" aria-label="A bright sun behind a cloud" role="img">
+        <span class="sun-rays"></span>
+        <span class="sun-core"></span>
+        <span class="cloud cloud-back"></span>
+        <span class="cloud cloud-front"></span>
+      </div>
+      <div class="weather-details" aria-label="Current conditions">
+        <div class="detail">
+          <span class="detail-icon" aria-hidden="true">💧</span>
+          <span class="detail-label">Humidity</span>
+          <strong>62%</strong>
+        </div>
+        <div class="detail">
+          <span class="detail-icon" aria-hidden="true">↗</span>
+          <span class="detail-label">Wind</span>
+          <strong>12 km/h</strong>
+        </div>
+        <div class="detail">
+          <span class="detail-icon" aria-hidden="true">☼</span>
+          <span class="detail-label">UV index</span>
+          <strong>Moderate</strong>
+        </div>
+        <div class="detail">
+          <span class="detail-icon" aria-hidden="true">◉</span>
+          <span class="detail-label">Visibility</span>
+          <strong>10 km</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="forecast" aria-labelledby="forecast-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PLAN AHEAD</p>
+          <h2 id="forecast-title">5-day forecast</h2>
+        </div>
+        <span class="sample-note">Sample forecast</span>
+      </div>
+      <div class="forecast-list">
+        <article class="forecast-day">
+          <h3>Wed</h3>
+          <span class="forecast-icon" aria-label="Sunny" role="img">☀️</span>
+          <p><strong>22°</strong><span>15°</span></p>
+        </article>
+        <article class="forecast-day">
+          <h3>Thu</h3>
+          <span class="forecast-icon" aria-label="Partly cloudy" role="img">⛅</span>
+          <p><strong>20°</strong><span>14°</span></p>
+        </article>
+        <article class="forecast-day">
+          <h3>Fri</h3>
+          <span class="forecast-icon" aria-label="Light rain" role="img">🌦️</span>
+          <p><strong>18°</strong><span>13°</span></p>
+        </article>
+        <article class="forecast-day">
+          <h3>Sat</h3>
+          <span class="forecast-icon" aria-label="Cloudy" role="img">☁️</span>
+          <p><strong>19°</strong><span>14°</span></p>
+        </article>
+        <article class="forecast-day">
+          <h3>Sun</h3>
+          <span class="forecast-icon" aria-label="Sunny" role="img">☀️</span>
+          <p><strong>23°</strong><span>16°</span></p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <span>Weather details are sample data for this static demo.</span>
+      <span class="app-version" id="app-version" aria-live="polite">App version: development</span>
+    </footer>
+  </main>
+  <script>
+    fetch("version.json")
+      .then((response) => {
+        if (!response.ok) throw new Error("Version info is unavailable");
+        return response.json();
+      })
+      .then(({ version }) => {
+        if (typeof version === "string") {
+          document.getElementById("app-version").textContent = `App version: ${version}`;
+        }
+      })
+      .catch(() => {
+        document.getElementById("app-version").textContent = "App version: development";
+      });
+  </script>
+</body>
+</html>
